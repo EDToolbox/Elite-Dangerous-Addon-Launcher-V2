@@ -27,7 +27,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
 
         #region Public Events
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         #endregion Public Events
 
@@ -59,7 +59,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             }
         }
 
-        private void Apps_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Apps_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Apps));
         }

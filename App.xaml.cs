@@ -4,7 +4,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
 {
     public partial class App : Application
     {
-        public static string ProfileName { get; set; }
+        public static string? ProfileName { get; set; }
         public static bool AutoLaunch { get; set; }
         public App()
         {

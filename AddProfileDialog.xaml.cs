@@ -19,7 +19,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
     /// </summary>
     public partial class AddProfileDialog : Window
     {
-        public string ProfileName { get; private set; }
+        public string ProfileName { get; private set; } = string.Empty;
 
         public AddProfileDialog()
         {

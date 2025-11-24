@@ -19,7 +19,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
     /// </summary>
     public partial class RenameProfileDialog : Window
     {
-        public string NewName { get; private set; }
+        public string NewName { get; private set; } = string.Empty;
 
         public RenameProfileDialog(string currentName)
         {

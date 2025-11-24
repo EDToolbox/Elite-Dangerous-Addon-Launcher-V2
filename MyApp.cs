@@ -7,14 +7,14 @@ namespace Elite_Dangerous_Addon_Launcher_V2
     {
         #region Private Fields
 
-        private string _args;
-        private string _exeName;
-        private string _installationURL;
+        private string _args = string.Empty;
+        private string _exeName = string.Empty;
+        private string _installationURL = string.Empty;
         private bool _isEnabled;
-        private string _name;
+        private string _name = string.Empty;
         private int _order;
-        private string _path;
-        private string _webAppURL;
+        private string _path = string.Empty;
+        private string _webAppURL = string.Empty;
 
         #endregion Private Fields
 
@@ -34,7 +34,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             };
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         #endregion Public Events
 

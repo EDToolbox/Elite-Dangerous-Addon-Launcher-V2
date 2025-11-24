@@ -14,9 +14,9 @@ namespace Elite_Dangerous_Addon_Launcher_V2
     /// </summary>
     public partial class AddApp : Window
     {
-        public MainWindow MainPageReference { get; set; }
-        public Profile SelectedProfile { get; set; }
-        public MyApp AppToEdit { get; set; }
+        public MainWindow? MainPageReference { get; set; }
+        public Profile? SelectedProfile { get; set; }
+        public MyApp? AppToEdit { get; set; }
         public List<MyApp> MyAppList { get; set; }
 
         public AddApp()

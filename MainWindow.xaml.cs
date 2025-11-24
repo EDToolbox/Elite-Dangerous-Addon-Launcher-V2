@@ -34,13 +34,13 @@ namespace Elite_Dangerous_Addon_Launcher_V2
         private static readonly object _epicCacheLock = new object();
 
         private bool _isChecking = false;
-        private string _appVersion;
+        private string _appVersion = string.Empty;
         private bool _isLoading = true;
-        private string logpath;
+        private string logpath = string.Empty;
 
         private bool isDarkTheme = false;
         private SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
-        private Settings settings;
+        private Settings settings = new();
 
         #endregion Private Fields
 
@@ -116,9 +116,9 @@ namespace Elite_Dangerous_Addon_Launcher_V2
 
         #region Public Methods
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Profile CurrentProfile { get; set; }
+        public Profile? CurrentProfile { get; set; }
 
         public List<Profile> OtherProfiles
         {
@@ -135,7 +135,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             }
         }
 
-        public List<Profile> Profiles { get; set; }
+        public List<Profile>? Profiles { get; set; }
 
         public void DragOver(IDropInfo dropInfo)
         {
