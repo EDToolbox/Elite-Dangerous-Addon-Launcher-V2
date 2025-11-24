@@ -33,10 +33,24 @@ jobs:
         run: dotnet publish --configuration Release --output ./publish --no-build
       
       - name: Setup NSIS
-        uses: OutSystems/nsis-action@v2
-        with:
-          script-file: 'installer/installer.nsi'
-          nsis-version: '3.08'
+        run: |
+          $nsisschachter = "$env:TEMP\nsis-3.08.zip"
+          $nsisDir = "$env:TEMP\nsis-3.08"
+          
+          Write-Host "Downloading NSIS 3.08..."
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.08/nsis-3.08.zip/download" -OutFile $nsisschachter -ErrorAction Stop
+          
+          Write-Host "Extracting NSIS..."
+          Expand-Archive -Path $nsisschachter -DestinationPath $env:TEMP -Force
+          
+          Write-Host "Building installer..."
+          & "$nsisDir\makensis.exe" /V4 installer/installer.nsi
+          
+          if ($LASTEXITCODE -ne 0) {
+            throw "NSIS build failed with exit code $LASTEXITCODE"
+          }
+          
+          Write-Host "Installer created successfully"
       
       - name: Determine Release Type
         id: release_type
