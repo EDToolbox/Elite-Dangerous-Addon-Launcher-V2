@@ -1,0 +1,44 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+# C# files
+[*.cs]
+indent_size = 4
+
+# Release build - suppress nullable reference warnings
+# These are expected in Release builds due to runtime type system
+[*.cs]
+dotnet_diagnostic.CS8618.severity = none  # Non-nullable field must contain a non-null value when exiting constructor
+dotnet_diagnostic.CS8625.severity = none  # Cannot convert null literal to non-nullable reference type
+dotnet_diagnostic.CS8602.severity = none  # Dereference of a possibly null reference
+dotnet_diagnostic.CS8604.severity = none  # Possible null reference argument
+dotnet_diagnostic.CS8600.severity = none  # Converting null literal or possible null value to non-nullable type
+dotnet_diagnostic.CS8601.severity = none  # Possible null reference assignment
+dotnet_diagnostic.CS8622.severity = none  # Nullability of reference types doesn't match
+
+# Code style rules
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# Naming conventions
+dotnet_naming_rule.interfaces_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interfaces_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interfaces_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
