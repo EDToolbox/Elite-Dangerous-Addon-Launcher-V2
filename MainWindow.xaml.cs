@@ -637,7 +637,8 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                         var psi = new ProcessStartInfo
                         {
                             FileName = shortcutPath,
-                            UseShellExecute = true
+                            UseShellExecute = false,
+                            CreateNoWindow = true
                         };
 
                         // Use using statement for proper resource cleanup (optimization #4)
@@ -735,8 +736,9 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                     var info = new ProcessStartInfo(path)
                     {
                         Arguments = args,
-                        UseShellExecute = true,
-                        WorkingDirectory = app.Path
+                        UseShellExecute = false,
+                        WorkingDirectory = app.Path,
+                        CreateNoWindow = true
                     };
 
                     Process proc = Process.Start(info);
@@ -760,9 +762,18 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             {
                 if (!string.IsNullOrEmpty(app.WebAppURL))
                 {
+                    // Validate URL before launching (Security Fix #8)
+                    if (!IsValidWebUrl(app.WebAppURL))
+                    {
+                        Log.Warning("Invalid or unsafe URL: {url}", app.WebAppURL);
+                        UpdateStatus($"Invalid URL for {app.Name}");
+                        return;
+                    }
+
                     string target = app.WebAppURL;
                     // Use using statement for proper resource cleanup (optimization #4)
-                    using (var proc = Process.Start(new ProcessStartInfo(target) { UseShellExecute = true }))
+                    // UseShellExecute = false for security (Fix #1c)
+                    using (var proc = Process.Start(new ProcessStartInfo(target) { UseShellExecute = false }))
                     {
                         // Web app launched
                     }
@@ -831,7 +842,13 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             if (File.Exists(settingsFilePath))
             {
                 string json = await File.ReadAllTextAsync(settingsFilePath);
-                settings = JsonConvert.DeserializeObject<Settings>(json);
+                // Security Fix #8: Use safe JSON settings for deserialization
+                var jsonSettings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.None,
+                    ConstructorHandling = ConstructorHandling.Default
+                };
+                settings = JsonConvert.DeserializeObject<Settings>(json, jsonSettings) ?? new Settings { Theme = AppConstants.DefaultTheme };
                 if (settings == null)
                 {
                     settings = new Settings { Theme = AppConstants.DefaultTheme };
@@ -849,7 +866,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
         private void Btn_LaunchSingle_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            MyApp appToLaunch = button.CommandParameter as MyApp;
+            MyApp? appToLaunch = button.CommandParameter as MyApp;
 
             if (appToLaunch != null)
             {
@@ -857,7 +874,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                 Btn_Launch.IsEnabled = false;
 
                 // Launch just this one app
-                LaunchApp(appToLaunch);
+                _ = LaunchApp(appToLaunch);
                 Log.Information("Launching single app: {AppName}", appToLaunch.Name);
 
                 // If this is not Elite Dangerous (which would keep the button disabled),
@@ -894,12 +911,15 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                     var newProfile = new Profile { Name = profileName, IsDefault = true };
 
                     // Unmark any existing default profiles
-                    foreach (var profile in AppState.Instance.Profiles)
+                    if (AppState.Instance.Profiles != null)
                     {
-                        profile.IsDefault = false;
+                        foreach (var profile in AppState.Instance.Profiles)
+                        {
+                            profile.IsDefault = false;
+                        }
                     }
 
-                    AppState.Instance.Profiles.Add(newProfile);
+                    AppState.Instance.Profiles?.Add(newProfile);
                     AppState.Instance.CurrentProfile = newProfile;
 
                     await SaveProfilesAsync();
@@ -942,7 +962,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             appResources.MergedDictionaries.Insert(0, new ResourceDictionary { Source = newThemeUri });
         }
 
-        private void MyApp_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void MyApp_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(MyApp.IsEnabled) || e.PropertyName == nameof(MyApp.Order))
             {
@@ -1038,7 +1058,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             {
                 foreach (var app in profile.Apps)
                 {
-                    app.PropertyChanged += MyApp_PropertyChanged;
+                    app.PropertyChanged += (object? sender, PropertyChangedEventArgs e) => MyApp_PropertyChanged((MyApp?)sender, e);
                 }
             }
         }
@@ -1089,7 +1109,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             {
                 foreach (var app in profile.Apps)
                 {
-                    app.PropertyChanged -= MyApp_PropertyChanged;
+                    app.PropertyChanged -= (object? sender, PropertyChangedEventArgs e) => MyApp_PropertyChanged((MyApp?)sender, e);
                 }
             }
         }
@@ -1372,16 +1392,20 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                     if (EdLuanchPaths.Count > 0)
                     {
                         // Add edlaunch.exe to the current profile
-                        var edlaunch = new MyApp
+                        string? edLaunchDir = Path.GetDirectoryName(EdLuanchPaths[0]);
+                        if (!string.IsNullOrEmpty(edLaunchDir))
                         {
-                            Name = "Elite Dangerous",
-                            ExeName = AppConstants.EdLaunchExe,
-                            Path = Path.GetDirectoryName(EdLuanchPaths[0]),
-                            IsEnabled = true,
-                            Order = 0
-                        };
-                        currentProfile.Apps.Add(edlaunch);
-                        await SaveProfilesAsync(); // You can also "await" here since SaveProfilesAsync is probably asynchronous
+                            var edlaunch = new MyApp
+                            {
+                                Name = "Elite Dangerous",
+                                ExeName = AppConstants.EdLaunchExe,
+                                Path = edLaunchDir,
+                                IsEnabled = true,
+                                Order = 0
+                            };
+                            currentProfile.Apps.Add(edlaunch);
+                            await SaveProfilesAsync(); // You can also "await" here since SaveProfilesAsync is probably asynchronous
+                        }
                     }
                     else
                     {
@@ -1408,9 +1432,9 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             Properties.Settings.Default.Save();
         }
 
-        private DataGridRow GetDataGridRow(MenuItem menuItem)
+        private DataGridRow? GetDataGridRow(MenuItem menuItem)
         {
-            DependencyObject obj = menuItem;
+            DependencyObject? obj = menuItem;
             while (obj != null && obj.GetType() != typeof(DataGridRow))
             {
                 obj = VisualTreeHelper.GetParent(obj);
@@ -1472,7 +1496,20 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             if (openFileDialog.ShowDialog() == true)
             {
                 string json = File.ReadAllText(openFileDialog.FileName);
-                var importedProfiles = JsonConvert.DeserializeObject<List<Profile>>(json);
+                // Security Fix #8: Use safe JSON settings for deserialization
+                var jsonSettings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.None,
+                    ConstructorHandling = ConstructorHandling.Default
+                };
+                var importedProfiles = JsonConvert.DeserializeObject<List<Profile>>(json, jsonSettings);
+                
+                if (importedProfiles == null || importedProfiles.Count == 0)
+                {
+                    MessageBox.Show("No profiles found in the imported file.", "Import Failed");
+                    return;
+                }
+                
                 CustomDialog dialog = new CustomDialog("Are you sure you, this will remove all current profiles?");
                 dialog.Owner = Application.Current.MainWindow;
                 dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
@@ -1499,6 +1536,42 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                 Cb_Profiles.SelectedIndex = 0; // if you want to automatically select the first imported profile
             }
         }
+        /// <summary>
+        /// Validates that a full path is within the expected base directory (Security Fix #3)
+        /// </summary>
+        private bool IsPathWithinBasePath(string fullPath, string basePath)
+        {
+            try
+            {
+                var fullInfo = new FileInfo(Path.GetFullPath(fullPath));
+                var baseInfo = new DirectoryInfo(Path.GetFullPath(basePath));
+                
+                // Check if file is within base directory
+                return fullInfo.FullName.StartsWith(
+                    baseInfo.FullName + Path.DirectorySeparatorChar,
+                    StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validates URL before opening (Security Fix #8)
+        /// </summary>
+        private bool IsValidWebUrl(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                return false;
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
+                return false;
+            
+            // Only allow http/https for web URLs
+            return uri.Scheme is "http" or "https";
+        }
+
         private bool IsEpicInstalled(string exePath)
         {
             // Check cache first (optimization #1)
@@ -1516,16 +1589,25 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             if (Directory.Exists(manifestDir))
             {
                 string exeFileName = Path.GetFileName(exePath);
-                string exeDirectory = Path.GetDirectoryName(exePath);
+                string? exeDirectory = Path.GetDirectoryName(exePath);
 
                 foreach (var file in Directory.GetFiles(manifestDir, "*.item"))
                 {
                     try
                     {
+                        // Validate file size before reading (Security Fix #5)
+                        const long MAX_MANIFEST_SIZE = 1 * 1024 * 1024; // 1MB
+                        var fileInfo = new FileInfo(file);
+                        if (fileInfo.Length > MAX_MANIFEST_SIZE)
+                        {
+                            Log.Warning("Manifest file too large: {file}", file);
+                            continue;
+                        }
+
                         var json = File.ReadAllText(file);
                         var manifest = JObject.Parse(json);
-                        string launchExe = manifest["LaunchExecutable"]?.ToString();
-                        string installLocation = manifest["InstallLocation"]?.ToString();
+                        string? launchExe = manifest["LaunchExecutable"]?.ToString();
+                        string? installLocation = manifest["InstallLocation"]?.ToString();
 
                         if (!string.IsNullOrEmpty(installLocation) && !string.IsNullOrEmpty(launchExe))
                         {
@@ -1539,7 +1621,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                             }
 
                             // Or compare just folder + filename
-                            if (string.Equals(Path.GetFullPath(installLocation), Path.GetFullPath(exeDirectory), StringComparison.OrdinalIgnoreCase) &&
+                            if (!string.IsNullOrEmpty(exeDirectory) && string.Equals(Path.GetFullPath(installLocation), Path.GetFullPath(exeDirectory), StringComparison.OrdinalIgnoreCase) &&
                                 string.Equals(launchExe, exeFileName, StringComparison.OrdinalIgnoreCase))
                             {
                                 result = true;
@@ -1547,9 +1629,21 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                             }
                         }
                     }
-                    catch
+                    catch (JsonException ex)
                     {
-                        // Skip corrupt manifest
+                        Log.Warning("Invalid JSON in manifest {file}: {message}", file, ex.Message);
+                    }
+                    catch (IOException ex)
+                    {
+                        Log.Warning("Cannot read manifest {file}: {message}", file, ex.Message);
+                    }
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        Log.Error("Access denied to manifest {file}: {message}", file, ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, "Error reading manifest {file}", file);
                     }
                 }
             }
@@ -1565,13 +1659,13 @@ namespace Elite_Dangerous_Addon_Launcher_V2
 
         private void Btn_ShowLogs(object sender, RoutedEventArgs e)
         {
-            logpath = LoggingConfig.logFileFullPath;
+            logpath = LoggingConfig.logFileFullPath ?? "";
             // Ensure the directory exists
             try
             {
                 // Get the most recent log file
 
-                if (logpath != null && File.Exists(logpath))
+                if (!string.IsNullOrEmpty(logpath) && File.Exists(logpath))
                 {
                     try
                     {
