@@ -37,7 +37,7 @@ jobs:
           Write-Host "Installing NSIS via Chocolatey..."
           choco install nsis -y
           Write-Host "✓ NSIS installed"
-          
+
           # Verify installation
           $nsisPath = "C:\Program Files (x86)\NSIS\makensis.exe"
           if (Test-Path $nsisPath) {
@@ -51,7 +51,7 @@ jobs:
         run: |
           Write-Host "Building NSIS installer..."
           & "C:\Program Files (x86)\NSIS\makensis.exe" /V3 installer/installer.nsi
-          
+
           if ($LASTEXITCODE -ne 0) {
             Write-Error "NSIS build failed with exit code $LASTEXITCODE"
             exit 1
