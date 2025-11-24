@@ -176,7 +176,7 @@ Write-Host ""
 Write-Success "Build erfolgreich abgeschlossen!"
 Write-Host ""
 Write-Host "Nächste Schritte:" -ForegroundColor $InfoColor
-Write-Host "  1. Testen: .\bin\$BuildType\net8.0-windows\Elite Dangerous Addon Launcher V2.exe"
+Write-Host "  1. Testen: .\bin\$BuildType\net10.0-windows\Elite Dangerous Addon Launcher V2.exe"
 
 if (-not $NoPublish) {
     Write-Host "  2. Publish-Verzeichnis: .\publish\"
