@@ -32,11 +32,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore "Elite Dangerous Addon Launcher V2.csproj" --runtime win-x64
 
-      - name: Build project
-        run: dotnet build "Elite Dangerous Addon Launcher V2.csproj" --configuration Release --runtime win-x64 --no-restore
-
       - name: Publish project
-        run: dotnet publish "Elite Dangerous Addon Launcher V2.csproj" --configuration Release --output ./publish --self-contained true --runtime win-x64 --no-build
+        run: dotnet publish "Elite Dangerous Addon Launcher V2.csproj" --configuration Release --output ./publish --self-contained true --runtime win-x64
 
       - name: Install WiX Toolset
         run: |
