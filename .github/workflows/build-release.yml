@@ -54,22 +54,34 @@ jobs:
           if ([string]::IsNullOrEmpty($version)) { $version = "2.0.0" }
           $publishDir = (Resolve-Path "publish").Path
           
-          # Harvest published files using heat
-          Write-Host "Harvesting published files..."
-          wix extension add WixToolset.Heat.wixext
-          wix heat directory "$publishDir" `
-            -o installer\PublishedFiles.wxs `
-            -cg PublishedFiles `
-            -dr INSTALLFOLDER `
-            -ag `
-            -sfrag `
-            -srd
+          # Generate PublishedFiles.wxs dynamically
+          Write-Host "Generating file manifest..."
+          $files = Get-ChildItem -Path "$publishDir" -Recurse -File | Where-Object { $_.Name -ne "Elite Dangerous Addon Launcher V2.exe" }
+          
+          # Build WiX fragment
+          $xml = '<?xml version="1.0" encoding="UTF-8"?>' + "`n"
+          $xml += '<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">' + "`n"
+          $xml += '  <Fragment>' + "`n"
+          $xml += '    <ComponentGroup Id="PublishedFiles" Directory="INSTALLFOLDER">' + "`n"
+          
+          $componentId = 1
+          foreach ($file in $files) {
+            $relativePath = $file.FullName.Substring($publishDir.Length + 1)
+            $xml += "      <Component Id=`"Comp_$componentId`">`n"
+            $xml += "        <File Source=`"`$(var.PublishDir)\$relativePath`" />`n"
+            $xml += "      </Component>`n"
+            $componentId++
+          }
+          
+          $xml += '    </ComponentGroup>' + "`n"
+          $xml += '  </Fragment>' + "`n"
+          $xml += '</Wix>' + "`n"
+          
+          [System.IO.File]::WriteAllText("installer\PublishedFiles.wxs", $xml, [System.Text.Encoding]::UTF8)
+          Write-Host "Generated manifest with $($files.Count) files"
           
           # Build the MSI
-          wix build installer\Package.wxs installer\PublishedFiles.wxs `
-            -arch x64 `
-            -d PublishDir="$publishDir" `
-            -out "Elite-Dangerous-Addon-Launcher-$version.msi"
+          wix build installer\Package.wxs installer\PublishedFiles.wxs -arch x64 -d PublishDir="$publishDir" -out "Elite-Dangerous-Addon-Launcher-$version.msi"
           
           if ($LASTEXITCODE -ne 0) {
             Write-Error "WiX build failed with exit code $LASTEXITCODE"
