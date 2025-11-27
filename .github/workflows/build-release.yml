@@ -40,35 +40,31 @@ jobs:
 
       - name: Install WiX Toolset
         run: |
-          Write-Host "Installing WiX Toolset v5..."
-          dotnet tool install --global wix --version 5.0.2
+          Write-Host "Installing WiX Toolset v6..."
+          dotnet tool install --global wix --version 6.0.2
           wix --version
           Write-Host "✓ WiX installed"
 
       - name: Build MSI Installer
         run: |
           Write-Host "Building MSI installer with WiX..."
-
+          
           $version = "${{ github.ref_name }}".TrimStart('v')
-          if ([string]::IsNullOrEmpty($version)) { $version = "2.1.0" }
+          if ([string]::IsNullOrEmpty($version)) { $version = "2.0.0" }
           $publishDir = (Resolve-Path "publish").Path
-
-          # Generate file list component from publish directory
-          Write-Host "Generating component group from published files..."
-          wix extension add WixToolset.Heat.Extension
-
-          # Build the MSI with all dependencies
+          
+          # Build the MSI with WiX v6
           wix build installer\Package.wxs `
             -arch x64 `
             -d PublishDir="$publishDir" `
             -ext WixToolset.UI.wixext `
             -out "Elite-Dangerous-Addon-Launcher-$version.msi"
-
+          
           if ($LASTEXITCODE -ne 0) {
             Write-Error "WiX build failed with exit code $LASTEXITCODE"
             exit 1
           }
-
+          
           Write-Host "✓ MSI installer created successfully"
 
       - name: Verify installer
