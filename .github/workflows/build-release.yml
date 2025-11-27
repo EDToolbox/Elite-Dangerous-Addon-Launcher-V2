@@ -54,8 +54,19 @@ jobs:
           if ([string]::IsNullOrEmpty($version)) { $version = "2.0.0" }
           $publishDir = (Resolve-Path "publish").Path
           
-          # Build the MSI with WiX v6
-          wix build installer\Package.wxs `
+          # Harvest published files using heat
+          Write-Host "Harvesting published files..."
+          wix extension add WixToolset.Heat.wixext
+          wix heat directory "$publishDir" `
+            -o installer\PublishedFiles.wxs `
+            -cg PublishedFiles `
+            -dr INSTALLFOLDER `
+            -ag `
+            -sfrag `
+            -srd
+          
+          # Build the MSI
+          wix build installer\Package.wxs installer\PublishedFiles.wxs `
             -arch x64 `
             -d PublishDir="$publishDir" `
             -out "Elite-Dangerous-Addon-Launcher-$version.msi"
