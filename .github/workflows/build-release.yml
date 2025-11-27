@@ -38,6 +38,19 @@ jobs:
       - name: Create MSIX package
         run: |
           Write-Host "Creating MSIX package..."
+          
+          # Find makeappx.exe in Windows SDK
+          $sdkPath = "C:\Program Files (x86)\Windows Kits\10\bin"
+          $makeappx = Get-ChildItem -Path $sdkPath -Filter "makeappx.exe" -Recurse -ErrorAction SilentlyContinue | 
+                      Where-Object { $_.FullName -match "x64" } | 
+                      Select-Object -First 1
+          
+          if (-not $makeappx) {
+            Write-Error "makeappx.exe not found in Windows SDK"
+            exit 1
+          }
+          
+          Write-Host "Found makeappx: $($makeappx.FullName)"
 
           # Create package directory structure
           $packageDir = "msix-package"
@@ -56,7 +69,7 @@ jobs:
           $version = "${{ github.ref_name }}".TrimStart('v')
           $msixPath = "Elite-Dangerous-Addon-Launcher-$version.msix"
 
-          & "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\makeappx.exe" pack /d $packageDir /p $msixPath /nv
+          & $makeappx.FullName pack /d $packageDir /p $msixPath /nv
 
           if ($LASTEXITCODE -ne 0) {
             Write-Error "MSIX build failed with exit code $LASTEXITCODE"
