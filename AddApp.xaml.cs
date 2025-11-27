@@ -170,7 +170,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             }
 
             // Save the profiles after adding the app
-            MainPageReference.SaveProfilesAsync();
+            _ = MainPageReference.SaveProfilesAsync();
 
             // Refresh the ItemsSource of your ListView
             MainPageReference.UpdateDataGrid();
@@ -183,7 +183,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
         {
             if (e.PropertyName == nameof(MyApp.IsEnabled))
             {
-                MainPageReference.SaveProfilesAsync();
+                _ = MainPageReference.SaveProfilesAsync();
             }
         }
 

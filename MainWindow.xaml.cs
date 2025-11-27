@@ -149,7 +149,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
 
         public List<Profile>? Profiles { get; set; }
 
-        public void DragOver(IDropInfo dropInfo)
+        public new void DragOver(IDropInfo dropInfo)
         {
             MyApp sourceItem = dropInfo.Data as MyApp;
             MyApp targetItem = dropInfo.TargetItem as MyApp;
@@ -159,7 +159,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                 dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
                 dropInfo.Effects = DragDropEffects.Move;
               
-                SaveProfilesAsync();
+                _ = SaveProfilesAsync();
             }
         }
 

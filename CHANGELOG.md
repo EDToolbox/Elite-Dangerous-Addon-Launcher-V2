@@ -188,9 +188,9 @@ Added 35+ application constants:
 
 ### Dependencies
 - .NET 10.0 LTS (supported until November 2028)
-- MaterialDesignThemes v5.2.1
-- Newtonsoft.Json v13.0.3
-- Serilog v4.3.0 with File and Console sinks v6.0.0
+- MaterialDesignThemes v5.3.0
+- Newtonsoft.Json v13.0.4
+- Serilog v4.3.0 with File sink v7.0.0 and Console sink v6.1.1
 - gong-wpf-dragdrop v4.0.0
 
 ### Breaking Changes
