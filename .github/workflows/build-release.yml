@@ -48,22 +48,22 @@ jobs:
       - name: Build MSI Installer
         run: |
           Write-Host "Building MSI installer with WiX..."
-          
+
           $version = "${{ github.ref_name }}".TrimStart('v')
           $publishDir = (Resolve-Path "publish").Path
-          
+
           # Build the MSI
           wix build installer\Package.wxs `
             -arch x64 `
             -define PublishDir="$publishDir" `
             -define Version="$version" `
             -out "Elite-Dangerous-Addon-Launcher-$version.msi"
-          
+
           if ($LASTEXITCODE -ne 0) {
             Write-Error "WiX build failed with exit code $LASTEXITCODE"
             exit 1
           }
-          
+
           Write-Host "✓ MSI installer created successfully"
 
       - name: Verify installer
@@ -75,7 +75,9 @@ jobs:
             exit 1
           }
           $size = (Get-Item $msiPath).Length / 1MB
-          Write-Host "✓ Installer verified: $msiPath ($([math]::Round($size, 2)) MB)"      - name: Determine Release Type
+          Write-Host "✓ Installer verified: $msiPath ($([math]::Round($size, 2)) MB)"
+
+      - name: Determine Release Type
         id: release_type
         run: |
           $tag = "${{ github.ref }}" -replace 'refs/tags/', ''
