@@ -106,7 +106,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Elite-Dangerous-Addon-Launcher-*.msix
+          files: |
+            Elite-Dangerous-Addon-Launcher-*.msix
+            LICENCE.md
           body_path: CHANGELOG.md
           prerelease: ${{ steps.release_type.outputs.is_prerelease == 'true' }}
           draft: false
