@@ -414,9 +414,9 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             if (appToEdit != null)
             {
                 // Check if this is Elite Dangerous (by exe name or Steam URL)
-                bool isEliteDangerous = appToEdit.ExeName.Equals(AppConstants.EdLaunchExe, StringComparison.OrdinalIgnoreCase)
+                bool isEliteDangerous = appToEdit.ExeName?.Equals(AppConstants.EdLaunchExe, StringComparison.OrdinalIgnoreCase) == true
                     || appToEdit.WebAppURL?.Equals("steam://rungameid/359320", StringComparison.OrdinalIgnoreCase) == true
-                    || appToEdit.Name.Contains("Elite Dangerous", StringComparison.OrdinalIgnoreCase);
+                    || appToEdit.Name?.Contains("Elite Dangerous", StringComparison.OrdinalIgnoreCase) == true;
 
                 if (isEliteDangerous)
                 {
