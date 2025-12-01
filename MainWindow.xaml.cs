@@ -1802,43 +1802,57 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             if (!currentProfile.Apps.Any(a => a.ExeName.Equals(AppConstants.EdLaunchExe, StringComparison.OrdinalIgnoreCase)
                                 || a.WebAppURL?.Equals("steam://rungameid/359320", StringComparison.OrdinalIgnoreCase) == true))
             {
-                // edlaunch.exe does not exist in the current profile Prompt the user with a dialog
-                // offering to scan their computer for it
-                CustomDialog dialog = new CustomDialog("Elite Dangerous does not exist in the current profile. Would you like to scan your computer for it?");
-                dialog.Owner = Application.Current.MainWindow;
-                dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                dialog.ShowDialog();
-
-                // If the user clicked Yes, call the method that scans the computer for edlaunch.exe
-                if (dialog.Result == MessageBoxResult.Yes)
+                // edlaunch.exe does not exist in the current profile - show the Elite Launch Dialog
+                var launchDialog = new EliteLaunchDialog
                 {
-                    var EdLuanchPaths = await ScanComputerForEdLaunch(); // Note the "await" keyword here
-                    if (EdLuanchPaths.Count > 0)
+                    Owner = Application.Current.MainWindow,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+
+                if (launchDialog.ShowDialog() == true && launchDialog.Confirmed)
+                {
+                    if (launchDialog.UseSteamUrl)
                     {
-                        // Add edlaunch.exe to the current profile
-                        string? edLaunchDir = Path.GetDirectoryName(EdLuanchPaths[0]);
+                        // Steam version - use Steam URL
+                        var edlaunch = new MyApp
+                        {
+                            Name = "Elite Dangerous (Steam)",
+                            ExeName = string.Empty,
+                            Path = string.Empty,
+                            WebAppURL = "steam://rungameid/359320",
+                            Args = launchDialog.LaunchArguments,
+                            IsEnabled = true,
+                            Order = 0
+                        };
+                        currentProfile.Apps.Add(edlaunch);
+                        await SaveProfilesAsync();
+                        Log.Information("Added Elite Dangerous (Steam) to profile");
+                    }
+                    else if (!string.IsNullOrEmpty(launchDialog.SelectedPath))
+                    {
+                        // Direct path or Legendary
+                        string? edLaunchDir = Path.GetDirectoryName(launchDialog.SelectedPath);
                         if (!string.IsNullOrEmpty(edLaunchDir))
                         {
+                            string name = "Elite Dangerous";
+                            if (launchDialog.UseLegendary)
+                            {
+                                name = "Elite Dangerous (Epic/Legendary)";
+                            }
+
                             var edlaunch = new MyApp
                             {
-                                Name = "Elite Dangerous",
+                                Name = name,
                                 ExeName = AppConstants.EdLaunchExe,
                                 Path = edLaunchDir,
+                                Args = launchDialog.LaunchArguments,
                                 IsEnabled = true,
                                 Order = 0
                             };
                             currentProfile.Apps.Add(edlaunch);
-                            await SaveProfilesAsync(); // You can also "await" here since SaveProfilesAsync is probably asynchronous
+                            await SaveProfilesAsync();
+                            Log.Information("Added {Name} to profile: {Path}", name, edLaunchDir);
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            AppConstants.EdLaunchNotFoundMessage,
-                            "edlaunch.exe Not Found",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error
-                        );
                     }
                 }
             }

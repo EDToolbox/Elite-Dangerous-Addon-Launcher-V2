@@ -1,0 +1,97 @@
+<Window x:Class="Elite_Dangerous_Addon_Launcher_V2.EliteLaunchDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Edit Elite Dangerous"
+        Width="420"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+        Background="{DynamicResource MaterialDesign.Brush.Background}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <StackPanel Margin="20">
+        <!-- Header -->
+        <TextBlock Text="How would you like to launch Elite Dangerous?"
+                   FontSize="14"
+                   FontWeight="Medium"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Launch Method Buttons -->
+        <Button x:Name="BtnStandardInstall" 
+                Content="Standard Installation (Scan Computer)" 
+                Click="BtnStandardInstall_Click"
+                Margin="0,0,0,8"
+                Padding="10,8"/>
+
+        <Button x:Name="BtnSteam" 
+                Content="Steam Version" 
+                Click="BtnSteam_Click"
+                Margin="0,0,0,8"
+                Padding="10,8"/>
+
+        <Button x:Name="BtnEpic" 
+                Content="Epic Games Launcher" 
+                Click="BtnEpic_Click"
+                Margin="0,0,0,8"
+                Padding="10,8"/>
+
+        <Button x:Name="BtnLegendary" 
+                Content="Legendary Launcher" 
+                Click="BtnLegendary_Click"
+                Margin="0,0,0,8"
+                Padding="10,8"/>
+
+        <Button x:Name="BtnBrowse" 
+                Content="Browse Manually..." 
+                Click="BtnBrowse_Click"
+                Margin="0,0,0,20"
+                Padding="10,8"/>
+
+        <!-- Launch Options -->
+        <TextBlock Text="Launch Options"
+                   FontSize="14"
+                   FontWeight="Medium"
+                   Margin="0,0,0,10"/>
+
+        <CheckBox x:Name="ChkAutoRun" 
+                  Content="Auto Run (automatically launch the game)"
+                  IsChecked="True"
+                  Margin="0,0,0,5"/>
+
+        <CheckBox x:Name="ChkAutoQuit" 
+                  Content="Auto Quit (close launcher when game exits)"
+                  IsChecked="True"
+                  Margin="0,0,0,5"/>
+
+        <CheckBox x:Name="ChkVRMode" 
+                  Content="VR Mode"
+                  Margin="0,0,0,20"/>
+
+        <!-- Dialog Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BtnCancel" 
+                    Content="Cancel" 
+                    Click="BtnCancel_Click"
+                    Width="80"
+                    Margin="0,0,10,0"/>
+            <Button x:Name="BtnOK" 
+                    Content="OK" 
+                    Click="BtnOK_Click"
+                    Width="80"
+                    IsEnabled="False"/>
+        </StackPanel>
+
+        <!-- Status -->
+        <TextBlock x:Name="TxtStatus" 
+                   Text=""
+                   FontStyle="Italic"
+                   HorizontalAlignment="Center"
+                   Margin="0,15,0,0"
+                   TextWrapping="Wrap"/>
+    </StackPanel>
+</Window>
