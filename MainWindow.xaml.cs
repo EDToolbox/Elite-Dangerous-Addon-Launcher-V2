@@ -670,7 +670,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             }
         }
 
-        private async Task LaunchApp(MyApp app)
+        private async Task LaunchApp(MyApp app, bool minimizeWindow = true)
         {
             string args;
             const string quote = "\"";
@@ -722,7 +722,8 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                     UpdateStatus($"Shortcut not found: {shortcutPath}");
                 }
 
-                this.WindowState = WindowState.Minimized;
+                if (minimizeWindow)
+                    this.WindowState = WindowState.Minimized;
                 return;
             }
 
@@ -787,7 +788,8 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                         }).ConfigureAwait(false);
 
                         UpdateStatus($"Launching {app.Name} (Epic) via Legendary...");
-                        this.WindowState = WindowState.Minimized;
+                        if (minimizeWindow)
+                            this.WindowState = WindowState.Minimized;
                         return;
                     }
 
@@ -865,7 +867,8 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             }
 
             UpdateStatus("All apps launched, waiting for EDLaunch Exit..");
-            this.WindowState = WindowState.Minimized;
+            if (minimizeWindow)
+                this.WindowState = WindowState.Minimized;
         }
 
 
@@ -934,8 +937,8 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                 // Disable the main launch button while an app is being launched
                 Btn_Launch.IsEnabled = false;
 
-                // Launch just this one app
-                _ = LaunchApp(appToLaunch);
+                // Launch just this one app (don't minimize window for single app launch)
+                _ = LaunchApp(appToLaunch, minimizeWindow: false);
                 Log.Information("Launching single app: {AppName}", appToLaunch.Name);
 
                 // If this is not Elite Dangerous (which would keep the button disabled),
@@ -1175,7 +1178,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             ApplyLanguage(languageTag);
             settings.Language = languageTag;
             _ = SaveSettingsAsync(settings);
-            
+
             // Show restart hint using localized strings
             MessageBox.Show(
                 Localization.Strings.Get("Message_LanguageChanged"),
