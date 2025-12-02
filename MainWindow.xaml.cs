@@ -435,6 +435,17 @@ namespace Elite_Dangerous_Addon_Launcher_V2
                         launchDialog.ChkVRMode.IsChecked = appToEdit.Args.Contains("/vr", StringComparison.OrdinalIgnoreCase);
                     }
 
+                    // Pre-load existing path or Steam URL to enable OK button
+                    if (!string.IsNullOrEmpty(appToEdit.WebAppURL) && appToEdit.WebAppURL.StartsWith("steam://", StringComparison.OrdinalIgnoreCase))
+                    {
+                        launchDialog.PreloadSteamUrl();
+                    }
+                    else if (!string.IsNullOrEmpty(appToEdit.Path))
+                    {
+                        var edLaunchPath = Path.Combine(appToEdit.Path, AppConstants.EdLaunchExe);
+                        launchDialog.PreloadPath(edLaunchPath, appToEdit.Name.Contains("Legendary", StringComparison.OrdinalIgnoreCase));
+                    }
+
                     if (launchDialog.ShowDialog() == true && launchDialog.Confirmed)
                     {
                         // Update the app based on dialog selection

@@ -41,6 +41,40 @@ namespace Elite_Dangerous_Addon_Launcher_V2
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Preload Steam URL configuration for editing existing Elite Dangerous entry
+        /// </summary>
+        public void PreloadSteamUrl()
+        {
+            UseSteamUrl = true;
+            SelectedPath = "steam://rungameid/359320";
+            BtnOK.IsEnabled = true;
+            TxtStatus.Text = "Steam launch configured.";
+            Log.Information("Elite Dangerous preloaded for Steam launch (edit mode)");
+        }
+
+        /// <summary>
+        /// Preload existing path configuration for editing Elite Dangerous entry
+        /// </summary>
+        /// <param name="path">Path to EDLaunch.exe</param>
+        /// <param name="useLegendary">Whether Legendary launcher is used</param>
+        public void PreloadPath(string? path, bool useLegendary)
+        {
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+            {
+                SelectedPath = path;
+                UseLegendary = useLegendary;
+                BtnOK.IsEnabled = true;
+                TxtStatus.Text = useLegendary ? $"Legendary: {path}" : $"Found: {path}";
+                Log.Information("Elite Dangerous preloaded (edit mode): {Path}, Legendary: {UseLegendary}", path, useLegendary);
+            }
+            else
+            {
+                TxtStatus.Text = "Previous path not found. Please select a new location.";
+                Log.Warning("Elite Dangerous previous path not found: {Path}", path);
+            }
+        }
+
         private void UpdateLaunchArguments()
         {
             var args = new System.Collections.Generic.List<string>();

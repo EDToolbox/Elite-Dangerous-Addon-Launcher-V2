@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed `steam://` URL scheme being rejected as "invalid or unsafe URL"
 - Steam game launches now work correctly with proper protocol handler support
+- Fixed Elite Dangerous edit dialog not allowing save when changing options (OK button stayed disabled)
 
 ---
 
