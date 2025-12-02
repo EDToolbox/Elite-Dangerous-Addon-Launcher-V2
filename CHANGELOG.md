@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta3] - 2025-12-02
+
+### 🌍 Internationalization
+
+#### Localization Infrastructure (Weblate-Ready)
+- Added RESX-based localization system for multi-language support
+- **English (en)** - Default language with ~60 localization keys
+- **German (de)** - Complete German translation
+- New `LocalizeExtension` for easy XAML binding: `{loc:Localize Key=MainWindow_AddApp}`
+- `Strings` helper class for code-behind access: `Strings.Get("key")`, `Strings.Format("key", args)`
+- Culture switching support via `Strings.SetCulture("de")`
+- Localization test suite in `Tests/LocalizationTests.cs`
+- Ready for Weblate integration (monolingual RESX format)
+
+---
+
 ## [2.0.0-beta2] - 2025-12-01
 
 ### 🎉 Highlights
