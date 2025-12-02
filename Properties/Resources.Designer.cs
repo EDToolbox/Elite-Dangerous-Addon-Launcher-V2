@@ -10,8 +10,8 @@
 
 namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add App.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_ApplicationArgs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Application Name.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_ApplicationName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Application Path.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_ApplicationPath", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Autoexit.
         /// </summary>
@@ -95,7 +95,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Autoexit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Autorun.
         /// </summary>
@@ -104,7 +104,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Autorun", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Browse...
         /// </summary>
@@ -113,7 +113,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Browse", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable?.
         /// </summary>
@@ -131,7 +131,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Enable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Executable Name.
         /// </summary>
@@ -140,7 +140,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_ExecutableName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Installation URL.
         /// </summary>
@@ -149,7 +149,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_InstallationURL", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save...
         /// </summary>
@@ -158,7 +158,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add App.
         /// </summary>
@@ -167,7 +167,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to VR.
         /// </summary>
@@ -176,7 +176,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_VR", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to WebApp URL.
         /// </summary>
@@ -185,7 +185,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddApp_WebAppURL", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add Profile.
         /// </summary>
@@ -194,7 +194,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AddProfile_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to EDData Addon Helper.
         /// </summary>
@@ -203,7 +203,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("AppTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -212,7 +212,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_Cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
@@ -221,7 +221,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_Close", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
@@ -230,7 +230,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_No", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
@@ -239,7 +239,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_OK", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -248,7 +248,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_Save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
@@ -257,7 +257,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Button_Yes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Custom Dialog.
         /// </summary>
@@ -266,7 +266,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("CustomDialog_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to App Name.
         /// </summary>
@@ -275,7 +275,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("DataGrid_AppName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
@@ -284,7 +284,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("DataGrid_Delete", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -293,7 +293,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("DataGrid_Edit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
@@ -302,7 +302,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("DataGrid_Enabled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Launch.
         /// </summary>
@@ -311,7 +311,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("DataGrid_Launch", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Quit (close launcher when game exits).
         /// </summary>
@@ -320,7 +320,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_AutoQuit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Run (automatically launch the game).
         /// </summary>
@@ -329,7 +329,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_AutoRun", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Browse Manually....
         /// </summary>
@@ -338,7 +338,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_BrowseManually", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Epic Games Launcher.
         /// </summary>
@@ -347,7 +347,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_EpicGames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to How would you like to launch Elite Dangerous?.
         /// </summary>
@@ -356,7 +356,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_HowToLaunch", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Launch Options.
         /// </summary>
@@ -365,7 +365,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_LaunchOptions", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Legendary Launcher.
         /// </summary>
@@ -374,7 +374,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_Legendary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Standard Installation (Scan Computer).
         /// </summary>
@@ -383,7 +383,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_StandardInstall", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Steam Version.
         /// </summary>
@@ -392,7 +392,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_SteamVersion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Elite Dangerous.
         /// </summary>
@@ -401,7 +401,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to VR Mode.
         /// </summary>
@@ -410,7 +410,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("EliteLaunch_VRMode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Custom Error.
         /// </summary>
@@ -419,7 +419,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("ErrorBox_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Elite Dangerous (Epic) Detected.
         /// </summary>
@@ -428,7 +428,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("LegendarySettings_EpicDetected", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Global Launch Parameters:.
         /// </summary>
@@ -437,7 +437,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("LegendarySettings_GlobalParams", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Legendary Settings (Epic Version Detected).
         /// </summary>
@@ -446,7 +446,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("LegendarySettings_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add App.
         /// </summary>
@@ -455,7 +455,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_AddApp", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add Profile.
         /// </summary>
@@ -464,7 +464,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_AddProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Close apps on Exit.
         /// </summary>
@@ -473,7 +473,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_CloseAppsOnExit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copy Profile.
         /// </summary>
@@ -482,7 +482,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_CopyProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copy to profile....
         /// </summary>
@@ -491,7 +491,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_CopyToProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
@@ -500,7 +500,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Default", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
@@ -509,7 +509,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Export", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
@@ -518,7 +518,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Import", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Launch.
         /// </summary>
@@ -527,7 +527,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Launch", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Logs.
         /// </summary>
@@ -536,7 +536,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Logs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Profile:.
         /// </summary>
@@ -545,7 +545,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Profile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Profiles...
         /// </summary>
@@ -554,7 +554,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_Profiles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remove Profile.
         /// </summary>
@@ -563,7 +563,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_RemoveProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rename Profile.
         /// </summary>
@@ -572,7 +572,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_RenameProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Toggle Theme.
         /// </summary>
@@ -581,7 +581,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("MainWindow_ToggleTheme", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Application name is required..
         /// </summary>
@@ -590,7 +590,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_AppNameRequired", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this item?.
         /// </summary>
@@ -599,7 +599,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ConfirmDelete", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to remove this profile?.
         /// </summary>
@@ -608,7 +608,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ConfirmRemoveProfile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Elite Dangerous was not found on your computer..
         /// </summary>
@@ -617,7 +617,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_EliteDangerousNotFound", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
@@ -626,7 +626,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_Error", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Profiles exported successfully..
         /// </summary>
@@ -635,7 +635,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ExportSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Profiles imported successfully..
         /// </summary>
@@ -644,7 +644,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ImportSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Application path or WebApp URL is required..
         /// </summary>
@@ -653,7 +653,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_PathOrUrlRequired", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to A profile with this name already exists..
         /// </summary>
@@ -662,7 +662,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ProfileAlreadyExists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Profile name is required..
         /// </summary>
@@ -671,7 +671,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_ProfileNameRequired", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
@@ -680,7 +680,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_Success", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
@@ -689,7 +689,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("Message_Warning", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rename Profile.
         /// </summary>
@@ -698,7 +698,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("RenameProfile_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Searching for Elite Dangerous....
         /// </summary>
@@ -707,7 +707,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("SearchProgress_Searching", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Searching for Elite Dangerous.
         /// </summary>
@@ -716,7 +716,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("SearchProgress_Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
@@ -725,7 +725,7 @@ namespace Elite_Dangerous_Addon_Launcher_V2.Properties {
                 return ResourceManager.GetString("WhatsNew_Close", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to What's New.
         /// </summary>

@@ -58,13 +58,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
+
   <!-- Application General -->
   <data name="AppTitle" xml:space="preserve">
     <value>EDData Addon Helper</value>
     <comment>Main application title</comment>
   </data>
-  
+
   <!-- Main Window -->
   <data name="MainWindow_AddApp" xml:space="preserve">
     <value>Add App</value>
@@ -111,7 +111,7 @@
   <data name="MainWindow_CopyToProfile" xml:space="preserve">
     <value>Copy to profile...</value>
   </data>
-  
+
   <!-- DataGrid Headers -->
   <data name="DataGrid_AppName" xml:space="preserve">
     <value>App Name</value>
@@ -128,7 +128,7 @@
   <data name="DataGrid_Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  
+
   <!-- Add App Dialog -->
   <data name="AddApp_Title" xml:space="preserve">
     <value>Add App</value>
@@ -172,17 +172,17 @@
   <data name="AddApp_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  
+
   <!-- Add Profile Dialog -->
   <data name="AddProfile_Title" xml:space="preserve">
     <value>Add Profile</value>
   </data>
-  
+
   <!-- Rename Profile Dialog -->
   <data name="RenameProfile_Title" xml:space="preserve">
     <value>Rename Profile</value>
   </data>
-  
+
   <!-- Elite Launch Dialog -->
   <data name="EliteLaunch_Title" xml:space="preserve">
     <value>Edit Elite Dangerous</value>
@@ -217,7 +217,7 @@
   <data name="EliteLaunch_VRMode" xml:space="preserve">
     <value>VR Mode</value>
   </data>
-  
+
   <!-- Search Progress Window -->
   <data name="SearchProgress_Title" xml:space="preserve">
     <value>Searching for Elite Dangerous</value>
@@ -225,7 +225,7 @@
   <data name="SearchProgress_Searching" xml:space="preserve">
     <value>Searching for Elite Dangerous...</value>
   </data>
-  
+
   <!-- Legendary Settings Window -->
   <data name="LegendarySettings_Title" xml:space="preserve">
     <value>Legendary Settings (Epic Version Detected)</value>
@@ -236,7 +236,7 @@
   <data name="LegendarySettings_GlobalParams" xml:space="preserve">
     <value>Global Launch Parameters:</value>
   </data>
-  
+
   <!-- What's New Dialog -->
   <data name="WhatsNew_Title" xml:space="preserve">
     <value>What's New</value>
@@ -244,17 +244,17 @@
   <data name="WhatsNew_Close" xml:space="preserve">
     <value>Close</value>
   </data>
-  
+
   <!-- Custom Dialog -->
   <data name="CustomDialog_Title" xml:space="preserve">
     <value>Custom Dialog</value>
   </data>
-  
+
   <!-- Error Box -->
   <data name="ErrorBox_Title" xml:space="preserve">
     <value>Custom Error</value>
   </data>
-  
+
   <!-- Common Buttons -->
   <data name="Button_OK" xml:space="preserve">
     <value>OK</value>
@@ -274,7 +274,7 @@
   <data name="Button_Close" xml:space="preserve">
     <value>Close</value>
   </data>
-  
+
   <!-- Messages -->
   <data name="Message_ConfirmDelete" xml:space="preserve">
     <value>Are you sure you want to delete this item?</value>
@@ -312,5 +312,5 @@
   <data name="Message_Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
-  
+
 </root>
